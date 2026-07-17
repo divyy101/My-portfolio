@@ -4,205 +4,498 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Portfolio of a B.Tech IT Undergraduate specializing in Java, DSA, and Web Development">
-    <meta name="keywords" content="Java Developer, DSA, Web Development, IT Student, Portfolio">
+    <meta name="description" content="Divyansh — B.Tech IT Developer specializing in Java, DSA, and Web Development. Portfolio featuring 4 projects, full-stack skills, and a cinematic 3D project journey.">
+    <meta name="keywords" content="Divyansh, Java Developer, DSA, Web Development, IT Student, Portfolio, Full Stack">
     <meta name="author" content="Divyansh">
+    <meta property="og:title" content="Divyansh | Developer Portfolio">
+    <meta property="og:description" content="Award-winning developer portfolio. Java, DSA, Web Dev & more.">
+    <meta property="og:type" content="website">
     <title>Divyansh | IT Developer Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="drive3d.css">
 </head>
 
 <body>
-    <!-- Navigation -->
+
+    <!-- ══════════════════════════════════════
+         LOADING SCREEN
+    ══════════════════════════════════════ -->
+    <div id="loader" class="loader">
+        <div class="loader-inner">
+            <div class="loader-logo">
+                <span class="loader-bracket">&lt;</span>
+                <span class="loader-name">Divyansh</span>
+                <span class="loader-bracket">/&gt;</span>
+            </div>
+            <div class="loader-bar-wrap">
+                <div class="loader-bar" id="loader-bar"></div>
+            </div>
+            <p class="loader-text">Initializing experience...</p>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         CUSTOM CURSOR
+    ══════════════════════════════════════ -->
+    <div id="cursor-dot" class="cursor-dot"></div>
+    <div id="cursor-ring" class="cursor-ring"></div>
+
+    <!-- ══════════════════════════════════════
+         NAVIGATION
+    ══════════════════════════════════════ -->
     <nav class="navbar" id="navbar">
         <div class="container nav-container">
-            <div class="logo">
+            <div class="logo" id="nav-logo">
                 <span class="logo-bracket">&lt;</span>
                 <span class="logo-text">Divyansh</span>
                 <span class="logo-bracket">/&gt;</span>
             </div>
             <ul class="nav-menu" id="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="#home"     class="nav-link" data-section="home">Home</a></li>
+                <li><a href="#about"    class="nav-link" data-section="about">About</a></li>
+                <li><a href="#skills"   class="nav-link" data-section="skills">Skills</a></li>
+                <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
+                <li><a href="#contact"  class="nav-link" data-section="contact">Contact</a></li>
             </ul>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="nav-actions">
+                <a href="mailto:divyanshsingh74178@gmail.com" class="nav-cta" id="nav-cta-btn">Hire Me</a>
+                <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- ══════════════════════════════════════
+         HERO SECTION
+    ══════════════════════════════════════ -->
     <section class="hero" id="home">
-        <div class="hero-background">
-            <div class="gradient-orb orb-1"></div>
-            <div class="gradient-orb orb-2"></div>
-            <div class="gradient-orb orb-3"></div>
+        <!-- Three.js particle canvas -->
+        <canvas id="hero-canvas" class="hero-canvas"></canvas>
+
+        <!-- Animated gradient orbs (CSS) -->
+        <div class="hero-bg">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+            <div class="grid-overlay"></div>
         </div>
+
         <div class="container hero-container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <p class="hero-greeting">Hello, I'm</p>
-                    <h1 class="hero-title">Divyansh</h1>
-                    <p class="hero-subtitle">B.Tech Information Technology Undergraduate</p>
-                    <p class="hero-description">
-                        Java Developer | DSA Enthusiast | Web Developer
-                    </p>
-                    <div class="hero-buttons">
-                        <a href="#projects" class="btn btn-primary">View Projects</a>
-                        <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            <!-- Left: Text -->
+            <div class="hero-text" id="hero-text">
+                <div class="hero-badge" id="hero-badge">
+                    <span class="badge-dot"></span>
+                    <span>Open to Opportunities</span>
+                </div>
+
+                <p class="hero-greeting" id="hero-greeting">Hello, I'm</p>
+                <h1 class="hero-title" id="hero-title">
+                    <span class="hero-name-grad">Divyansh</span>
+                </h1>
+
+                <div class="hero-role-wrap">
+                    <span class="role-prefix">I'm a&nbsp;</span>
+                    <span id="typed-target" class="typed-text"></span>
+                </div>
+
+                <p class="hero-subtitle" id="hero-subtitle">
+                    B.Tech Information Technology Undergraduate — passionate about building
+                    clean, efficient, user-focused software.
+                </p>
+
+                <!-- Stats chips -->
+                <div class="hero-stats" id="hero-stats">
+                    <div class="stat-chip">
+                        <span class="stat-icon">☕</span>
+                        <span>Java Backend</span>
+                    </div>
+                    <div class="stat-chip">
+                        <span class="stat-icon">🧩</span>
+                        <span>DSA Grinder</span>
+                    </div>
+                    <div class="stat-chip">
+                        <span class="stat-icon">🚀</span>
+                        <span>4+ Projects</span>
                     </div>
                 </div>
-                <div class="hero-image">
-                    <div class="image-wrapper">
-                        <img src="profile.jpg" alt="Divyansh Profile Photo">
-                        <div class="image-glow"></div>
+
+                <!-- CTA Buttons -->
+                <div class="hero-btns" id="hero-btns">
+                    <a href="#projects" class="btn btn-primary magnetic" id="btn-projects">
+                        <span>View Projects</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="#contact" class="btn btn-glass magnetic" id="btn-contact">
+                        <span>Get In Touch</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right: Profile image -->
+            <div class="hero-visual" id="hero-visual">
+                <div class="profile-ring-wrap">
+                    <div class="profile-ring-outer"></div>
+                    <div class="profile-ring-inner"></div>
+                    <div class="profile-img-wrap">
+                        <img src="profile.jpg" alt="Divyansh — IT Developer" class="profile-img" loading="eager">
+                        <div class="profile-glow"></div>
                     </div>
+                    <!-- Floating orbit tags -->
+                    <div class="orbit-tag orbit-tag-1">Java</div>
+                    <div class="orbit-tag orbit-tag-2">DSA</div>
+                    <div class="orbit-tag orbit-tag-3">Web</div>
                 </div>
             </div>
         </div>
+
+        <!-- Scroll indicator -->
+        <div class="scroll-indicator" id="scroll-indicator">
+            <div class="scroll-line"></div>
+            <span>Scroll</span>
+        </div>
     </section>
 
-    <!-- About Section -->
+    <!-- ══════════════════════════════════════
+         ABOUT SECTION
+    ══════════════════════════════════════ -->
     <section class="about" id="about">
+        <div class="section-bg-accent about-bg"></div>
         <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
+            <div class="section-header reveal">
+                <span class="section-tag">About</span>
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">A brief story of who I am and what drives me</p>
+            </div>
+
+            <div class="about-grid">
+                <!-- Left: Bio -->
+                <div class="about-bio reveal">
                     <p class="about-intro">
-                        Driven IT undergraduate skilled in Java, DSA, and Web Development. Passionate about building clean, user-focused software.
+                        Driven IT undergraduate skilled in Java, DSA, and Web Development.
+                        Passionate about building clean, user-focused software.
                     </p>
-                    <p class="about-description">
-                        Constantly sharpening my problem-solving skills to grow into an industry-ready software engineer.
+                    <p class="about-desc">
+                        Constantly sharpening my problem-solving skills to grow into an
+                        industry-ready software engineer. I find deep satisfaction in debugging
+                        and clean logic over a flashy UI.
                     </p>
-                    <div class="quote-box">
-                        <div class="quote-icon">💡</div>
-                        <p class="quote-text">"Good software is built twice — once in logic, once in code."</p>
-                    </div>
-                    <div class="current-focus">
-                        <h3>🚀 Current Focus</h3>
-                        <ul>
-                            <li>Mastering DSA &amp; Problem Solving</li>
-                            <li>Building Full-Stack Java &amp; Web Projects</li>
-                            <li>Practicing Clean Code Architecture</li>
+
+                    <!-- Quote -->
+                    <blockquote class="glass-quote">
+                        <div class="quote-mark">"</div>
+                        <p>Good software is built twice — once in logic, once in code.</p>
+                    </blockquote>
+
+                    <!-- Current Focus -->
+                    <div class="focus-section">
+                        <h3 class="focus-title">
+                            <span class="focus-icon">🚀</span> Current Focus
+                        </h3>
+                        <ul class="focus-list">
+                            <li class="focus-item">
+                                <span class="focus-dot"></span>
+                                Mastering DSA &amp; Problem Solving
+                            </li>
+                            <li class="focus-item">
+                                <span class="focus-dot"></span>
+                                Building Full-Stack Java &amp; Web Projects
+                            </li>
+                            <li class="focus-item">
+                                <span class="focus-dot"></span>
+                                Practicing Clean Code Architecture
+                            </li>
                         </ul>
                     </div>
-                    <div class="fun-fact">
-                        <h3>🎯 Fun Fact</h3>
-                        <p>
-                            I find deep satisfaction in debugging and clean logic over a flashy UI 😄
-                        </p>
+                </div>
+
+                <!-- Right: Info cards -->
+                <div class="about-cards reveal">
+                    <div class="info-card glass-card">
+                        <div class="info-card-icon">🎓</div>
+                        <div class="info-card-body">
+                            <h4>Education</h4>
+                            <p>B.Tech Information Technology</p>
+                            <span class="info-badge">2022 – 2027</span>
+                            <span class="info-badge" style="margin-left:6px;">Alumni in Technology</span>
+                        </div>
+                    </div>
+
+                    <div class="info-card glass-card">
+                        <div class="info-card-icon">🎯</div>
+                        <div class="info-card-body">
+                            <h4>Fun Fact</h4>
+                            <p>I debug for fun and find satisfaction in clean algorithms over flashy UI 😄</p>
+                        </div>
+                    </div>
+
+                    <div class="info-card glass-card">
+                        <div class="info-card-icon">💡</div>
+                        <div class="info-card-body">
+                            <h4>Philosophy</h4>
+                            <p>Code with intent, build with purpose, ship with quality.</p>
+                        </div>
+                    </div>
+
+                    <!-- Animated counters -->
+                    <div class="about-stats-row">
+                        <div class="about-stat glass-card">
+                            <span class="about-stat-num" data-target="4">0</span>
+                            <span class="about-stat-label">Projects</span>
+                        </div>
+                        <div class="about-stat glass-card">
+                            <span class="about-stat-num" data-target="3">0</span>
+                            <span class="about-stat-label">Languages</span>
+                        </div>
+                        <div class="about-stat glass-card">
+                            <span class="about-stat-num" data-target="2027">2022</span>
+                            <span class="about-stat-label">Graduate</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
+    <!-- ══════════════════════════════════════
+         SKILLS SECTION
+    ══════════════════════════════════════ -->
     <section class="skills" id="skills">
         <div class="container">
-            <h2 class="section-title">Technical Skills</h2>
-            <div class="skills-grid">
-                <!-- Technical Skills -->
-                <div class="skill-card">
-                    <div class="skill-icon">☕</div>
-                    <h3>Java</h3>
-                    <p>Robust backend, OOP, and enterprise architecture.</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">💻</div>
-                    <h3>C Programming</h3>
-                    <p>Core logic, memory management, and low-level systems.</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">🐍</div>
-                    <h3>Python</h3>
-                    <p>Scripting, automation, and data analysis.</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">🌐</div>
-                    <h3>Web Dev</h3>
-                    <p>Responsive UIs with HTML, CSS, and JS.</p>
+            <div class="section-header reveal">
+                <span class="section-tag">Tech stack</span>
+                <h2 class="section-title">Technical Skills</h2>
+                <p class="section-subtitle">Technologies &amp; tools I work with</p>
+            </div>
+
+            <!-- Skill category tabs -->
+            <div class="skill-tabs reveal" role="tablist">
+                <button class="skill-tab active" data-tab="technical" role="tab" id="tab-technical">Technical</button>
+                <button class="skill-tab" data-tab="soft" role="tab" id="tab-soft">Soft Skills</button>
+            </div>
+
+            <!-- Technical Skills -->
+            <div class="skills-panel active" id="panel-technical" role="tabpanel">
+                <!-- Orbit visualization -->
+                <div class="orbit-wrap reveal">
+                    <div class="orbit-center">
+                        <span class="orbit-center-text">Core</span>
+                    </div>
+                    <div class="orbit orbit-1">
+                        <div class="orbit-item orbit-item-1">
+                            <span class="orbit-icon">☕</span>
+                            <span class="orbit-label">Java</span>
+                        </div>
+                    </div>
+                    <div class="orbit orbit-2">
+                        <div class="orbit-item orbit-item-2">
+                            <span class="orbit-icon">💻</span>
+                            <span class="orbit-label">C</span>
+                        </div>
+                    </div>
+                    <div class="orbit orbit-3">
+                        <div class="orbit-item orbit-item-3">
+                            <span class="orbit-icon">🐍</span>
+                            <span class="orbit-label">Python</span>
+                        </div>
+                    </div>
+                    <div class="orbit orbit-4">
+                        <div class="orbit-item orbit-item-4">
+                            <span class="orbit-icon">🌐</span>
+                            <span class="orbit-label">Web</span>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Soft Skills -->
-                <div class="skill-card">
-                    <div class="skill-icon">📢</div>
-                    <h3>Communication</h3>
-                    <p>Clear technical articulation and active listening.</p>
+                <!-- Skill cards grid -->
+                <div class="skills-grid">
+                    <div class="skill-card glass-card reveal" data-tilt>
+                        <div class="skill-card-top">
+                            <div class="skill-icon-wrap" style="--sk-color: #f97316">☕</div>
+                            <h3>Java</h3>
+                        </div>
+                        <p>Robust backend development, OOP principles, and enterprise architecture patterns.</p>
+                        <div class="skill-bar-wrap">
+                            <div class="skill-bar" style="--pct: 88%; --bar-color: #f97316"></div>
+                        </div>
+                        <div class="skill-tags">
+                            <span>OOP</span><span>Spring</span><span>Backend</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card glass-card reveal" data-tilt>
+                        <div class="skill-card-top">
+                            <div class="skill-icon-wrap" style="--sk-color: #3b82f6">💻</div>
+                            <h3>C Programming</h3>
+                        </div>
+                        <p>Core logic, memory management, and low-level systems programming.</p>
+                        <div class="skill-bar-wrap">
+                            <div class="skill-bar" style="--pct: 78%; --bar-color: #3b82f6"></div>
+                        </div>
+                        <div class="skill-tags">
+                            <span>Pointers</span><span>Memory</span><span>Algorithms</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card glass-card reveal" data-tilt>
+                        <div class="skill-card-top">
+                            <div class="skill-icon-wrap" style="--sk-color: #22c55e">🐍</div>
+                            <h3>Python</h3>
+                        </div>
+                        <p>Scripting, automation, and data analysis with clean, readable code.</p>
+                        <div class="skill-bar-wrap">
+                            <div class="skill-bar" style="--pct: 72%; --bar-color: #22c55e"></div>
+                        </div>
+                        <div class="skill-tags">
+                            <span>Scripting</span><span>Automation</span><span>Data</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card glass-card reveal" data-tilt>
+                        <div class="skill-card-top">
+                            <div class="skill-icon-wrap" style="--sk-color: #00d4ff">🌐</div>
+                            <h3>Web Dev</h3>
+                        </div>
+                        <p>Responsive UIs with semantic HTML, modern CSS, and vanilla JavaScript.</p>
+                        <div class="skill-bar-wrap">
+                            <div class="skill-bar" style="--pct: 82%; --bar-color: #00d4ff"></div>
+                        </div>
+                        <div class="skill-tags">
+                            <span>HTML5</span><span>CSS3</span><span>JS</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="skill-card">
-                    <div class="skill-icon">🦁</div>
-                    <h3>Leadership</h3>
-                    <p>Guiding teams and fostering a goal-oriented environment.</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">🤝</div>
-                    <h3>Team Management</h3>
-                    <p>Conflict resolution and empowering team members.</p>
+            </div>
+
+            <!-- Soft Skills -->
+            <div class="skills-panel" id="panel-soft" role="tabpanel">
+                <div class="skills-grid">
+                    <div class="skill-card glass-card reveal" data-tilt>
+                        <div class="skill-card-top">
+                            <div class="skill-icon-wrap" style="--sk-color: #e879f9">📢</div>
+                            <h3>Communication</h3>
+                        </div>
+                        <p>Clear technical articulation, active listening, and effective team communication.</p>
+                        <div class="skill-bar-wrap">
+                            <div class="skill-bar" style="--pct: 85%; --bar-color: #e879f9"></div>
+                        </div>
+                        <div class="skill-tags">
+                            <span>Clarity</span><span>Empathy</span><span>Writing</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card glass-card reveal" data-tilt>
+                        <div class="skill-card-top">
+                            <div class="skill-icon-wrap" style="--sk-color: #fbbf24">🦁</div>
+                            <h3>Leadership</h3>
+                        </div>
+                        <p>Guiding teams with vision, fostering a goal-oriented and collaborative environment.</p>
+                        <div class="skill-bar-wrap">
+                            <div class="skill-bar" style="--pct: 80%; --bar-color: #fbbf24"></div>
+                        </div>
+                        <div class="skill-tags">
+                            <span>Vision</span><span>Mentoring</span><span>Goals</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card glass-card reveal" data-tilt>
+                        <div class="skill-card-top">
+                            <div class="skill-icon-wrap" style="--sk-color: #00ff88">🤝</div>
+                            <h3>Team Management</h3>
+                        </div>
+                        <p>Conflict resolution, task delegation, and empowering every team member to succeed.</p>
+                        <div class="skill-bar-wrap">
+                            <div class="skill-bar" style="--pct: 75%; --bar-color: #00ff88"></div>
+                        </div>
+                        <div class="skill-tags">
+                            <span>Collaboration</span><span>Delegation</span><span>Resolve</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ════════════════════════════════════════════════════
+    <!-- ══════════════════════════════════════
          CINEMATIC 3D PROJECT JOURNEY SECTION
-         ════════════════════════════════════════════════════ -->
+    ══════════════════════════════════════ -->
     <section class="projects" id="projects">
         <div class="container">
-            <h2 class="section-title">Project Journey</h2>
-            <p class="projects-subtitle">Ride through my development roadmap in real-time</p>
-        </div>
-
-        <!-- Full-width cinematic canvas area -->
-        <div class="drive-scene-wrapper" id="drive-scene-wrapper">
-
-            <!-- Canvas -->
-            <canvas id="drive-canvas"></canvas>
-
-            <!-- Milestone pop-up overlay -->
-            <div id="milestone-overlay" class="milestone-overlay">
-                <!-- Filled dynamically by JS -->
+            <div class="section-header reveal journey-heading">
+                <span class="section-tag">Selected work</span>
+                <h2 class="section-title">Ideas in motion.</h2>
+                <p class="section-subtitle">A closer look at the work, systems, and experiments behind my build process.</p>
             </div>
 
-            <!-- Control Bar -->
-            <div class="drive-controls" id="drive-controls">
-                <button id="ctrl-speeddown" class="ctrl-btn" title="Slow Down">
-                    <span>🐢</span><span class="ctrl-label">Slow</span>
-                </button>
-                <button id="ctrl-speedup" class="ctrl-btn" title="Speed Up">
-                    <span>🚀</span><span class="ctrl-label">Fast</span>
-                </button>
-                <button id="ctrl-weather" class="ctrl-btn" title="Toggle Weather">
-                    <span>🌧️</span><span class="ctrl-label">Rain</span>
-                </button>
-                <button id="ctrl-night" class="ctrl-btn" title="Toggle Day/Night">
-                    <span>🌙</span><span class="ctrl-label">Night</span>
-                </button>
-            </div>
-
-            <!-- Cinematic label -->
-            <div class="drive-label">
-                <span class="drive-dot"></span>
-                LIVE JOURNEY
+            <!-- Project stats banner -->
+            <div class="project-stats-banner reveal">
+                <div class="proj-stat">
+                    <span class="proj-stat-num">04</span>
+                    <span class="proj-stat-label">Projects Shipped</span>
+                </div>
+                <div class="proj-stat-divider"></div>
+                <div class="proj-stat">
+                    <span class="proj-stat-num">3+</span>
+                    <span class="proj-stat-label">Tech Stacks</span>
+                </div>
+                <div class="proj-stat-divider"></div>
+                <div class="proj-stat">
+                    <span class="proj-stat-num">∞</span>
+                    <span class="proj-stat-label">Lines of Logic</span>
+                </div>
             </div>
         </div>
 
-        <!-- Project list cards below canvas -->
+        <!-- Cinematic 3D render -->
+        <div class="drive-scene-wrapper journey-hero" id="drive-scene-wrapper">
+            <div class="journey-media" aria-label="Live road video showing a night drive">
+                <video class="journey-video" autoplay muted loop playsinline preload="metadata" poster="assets/journey-road.png" aria-label="Night highway driving footage">
+                    <source src="https://cdn.coverr.co/videos/coverr-stream-next-to-the-road-4482/1080p.mp4" type="video/mp4">
+                </video>
+                <img class="journey-fallback" src="assets/journey-road.png" alt="A dark electric sports car on a wet mountain highway at blue hour" loading="lazy">
+            </div>
+            <div class="journey-vehicle" aria-hidden="true">
+                <span class="vehicle-aura"></span>
+                <img id="journey-vehicle-img" src="assets/vehicle-green.png" alt="">
+            </div>
+            <div class="journey-vignette"></div>
+            <div class="journey-grain"></div>
+
+            <div class="journey-topbar">
+                <div class="drive-label"><span class="drive-dot"></span>LIVE VEHICLE / ROAD STUDY</div>
+                <span class="journey-location"><span class="location-pulse"></span> Somewhere between logic &amp; launch</span>
+                <button class="journey-video-control" type="button" aria-label="Pause background video" aria-pressed="false"><span class="video-control-icon">Ⅱ</span><span class="video-control-text">Pause motion</span></button>
+            </div>
+
+            <div class="journey-copy">
+                <span class="journey-kicker">Currently exploring <span class="journey-kicker-dot"></span> 04 projects</span>
+                <h3>From rough idea<br><em>to real software.</em></h3>
+                <p>Follow the path from first sketch to shipped experience — one thoughtful decision at a time.</p>
+                <a class="journey-action" href="#pcard-1">Explore the work <span>↗</span></a>
+            </div>
+
+            <div class="journey-console" aria-label="Journey progress">
+                <div class="console-head"><span>BUILD LOG</span><span>04 / 04</span></div>
+                <div class="console-line"><span class="console-fill"></span></div>
+                <div class="console-steps"><span>DISCOVER</span><span>DESIGN</span><span>BUILD</span><span class="active">SHIP</span></div>
+            </div>
+
+            <div class="journey-caption"><span class="caption-index">01</span><span>Event Registration System</span><span class="caption-rule"></span><span>Java · OOP · Validation</span></div>
+        </div>
+
+        <!-- Project cards grid below canvas -->
         <div class="container">
             <div class="project-cards-grid">
 
-                <div class="pcard" id="pcard-1">
+                <div class="pcard" id="pcard-1" data-tilt>
+                    <div class="pcard-glow" style="--pg-color: #6366f1"></div>
                     <div class="pcard-num" style="color:#6366f1">01</div>
                     <h3 class="pcard-title">Event Registration System</h3>
                     <p class="pcard-desc">College event registration with data validation and dynamic array management.</p>
@@ -213,7 +506,8 @@
                     </div>
                 </div>
 
-                <div class="pcard" id="pcard-2">
+                <div class="pcard" id="pcard-2" data-tilt>
+                    <div class="pcard-glow" style="--pg-color: #8b5cf6"></div>
                     <div class="pcard-num" style="color:#8b5cf6">02</div>
                     <h3 class="pcard-title">Temple &amp; Pilgrimage Crowd Management</h3>
                     <p class="pcard-desc">Intelligent crowd control and monitoring solution for pilgrimage sites.</p>
@@ -224,7 +518,8 @@
                     </div>
                 </div>
 
-                <div class="pcard" id="pcard-3">
+                <div class="pcard" id="pcard-3" data-tilt>
+                    <div class="pcard-glow" style="--pg-color: #06b6d4"></div>
                     <div class="pcard-num" style="color:#06b6d4">03</div>
                     <h3 class="pcard-title">Study GPS System</h3>
                     <p class="pcard-desc">Navigation app to prioritize topics and track customized study roadmaps.</p>
@@ -235,7 +530,8 @@
                     </div>
                 </div>
 
-                <div class="pcard" id="pcard-4">
+                <div class="pcard" id="pcard-4" data-tilt>
+                    <div class="pcard-glow" style="--pg-color: #10b981"></div>
                     <div class="pcard-num" style="color:#10b981">04</div>
                     <h3 class="pcard-title">Online Quiz System</h3>
                     <p class="pcard-desc">Interactive quiz platform featuring multi-language support, timers, and charts.</p>
@@ -250,43 +546,134 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- ══════════════════════════════════════
+         CONTACT SECTION
+    ══════════════════════════════════════ -->
     <section class="contact" id="contact">
+        <div class="section-bg-accent contact-bg"></div>
         <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-content">
-                <p class="contact-description">
-                    I'm always open to discussing new projects, creative ideas, or opportunities to be part of your
-                    vision.
-                </p>
-                <div class="contact-links">
-                    <a href="mailto:divyanshsingh74178@gmail.com" class="contact-btn" id="email-btn">
-                        <span class="contact-icon">📧</span>
-                        <span>Email Me</span>
-                    </a>
-                    <a href="https://github.com/divyy101" target="_blank" class="contact-btn" id="github-btn">
-                        <span class="contact-icon">💻</span>
-                        <span>GitHub</span>
-                    </a>
-                    <a href="https://linkedin.com/in/yourusername" target="_blank" class="contact-btn"
-                        id="linkedin-btn">
-                        <span class="contact-icon">💼</span>
-                        <span>LinkedIn</span>
-                    </a>
+            <div class="section-header reveal">
+                <span class="section-tag">Get in touch</span>
+                <h2 class="section-title">Let's Connect</h2>
+                <p class="section-subtitle">I'm always open to discussing projects, ideas, and opportunities</p>
+            </div>
+
+            <div class="contact-grid">
+                <!-- Left: Info + Social -->
+                <div class="contact-info reveal">
+                    <p class="contact-description">
+                        Whether it's a project collaboration, a job opportunity, or just a chat
+                        about tech — my inbox is always open. Let's build something great together.
+                    </p>
+
+                    <div class="contact-social">
+                        <a href="mailto:divyanshsingh74178@gmail.com" class="social-btn" id="email-btn">
+                            <div class="social-icon-wrap" style="--s-color: #ea4335">
+                                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                            </div>
+                            <div class="social-text">
+                                <span class="social-label">Email</span>
+                                <span class="social-value">divyanshsingh74178@gmail.com</span>
+                            </div>
+                            <svg class="social-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+
+                        <a href="https://github.com/divyy101" target="_blank" rel="noopener" class="social-btn" id="github-btn">
+                            <div class="social-icon-wrap" style="--s-color: #f0f6fc">
+                                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                            </div>
+                            <div class="social-text">
+                                <span class="social-label">GitHub</span>
+                                <span class="social-value">github.com/divyy101</span>
+                            </div>
+                            <svg class="social-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+
+                        <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener" class="social-btn" id="linkedin-btn">
+                            <div class="social-icon-wrap" style="--s-color: #0a66c2">
+                                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                            </div>
+                            <div class="social-text">
+                                <span class="social-label">LinkedIn</span>
+                                <span class="social-value">Connect with me</span>
+                            </div>
+                            <svg class="social-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
                 </div>
+
+                <!-- Right: Contact Form -->
+                <form class="contact-form glass-card reveal" id="contact-form" action="mailto:divyanshsingh74178@gmail.com" method="GET">
+                    <h3 class="form-title">Send a Message</h3>
+
+                    <div class="form-group">
+                        <label for="form-name" class="form-label">Your Name</label>
+                        <input type="text" id="form-name" name="subject" class="form-input" placeholder="Divyansh" required>
+                        <div class="form-line"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="form-email" class="form-label">Your Email</label>
+                        <input type="email" id="form-email" name="email" class="form-input" placeholder="you@example.com" required>
+                        <div class="form-line"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="form-message" class="form-label">Message</label>
+                        <textarea id="form-message" name="body" class="form-input form-textarea" placeholder="Let's build something great..." rows="4" required></textarea>
+                        <div class="form-line"></div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary form-submit magnetic" id="form-submit-btn">
+                        <span>Send Message</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+                    </button>
+                </form>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ══════════════════════════════════════
+         FOOTER
+    ══════════════════════════════════════ -->
     <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Divyansh. Built with passion and clean code.</p>
+        <div class="container footer-inner">
+            <div class="footer-logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">Divyansh</span>
+                <span class="logo-bracket">/&gt;</span>
+            </div>
+            <p class="footer-copy">&copy; 2026 Divyansh. Built with passion and clean code.</p>
+            <div class="footer-links">
+                <a href="mailto:divyanshsingh74178@gmail.com">Email</a>
+                <a href="https://github.com/divyy101" target="_blank" rel="noopener">GitHub</a>
+            </div>
         </div>
     </footer>
 
+    <!-- Scroll to top -->
+    <button class="scroll-top" id="scroll-top-btn" aria-label="Scroll to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="20" height="20"><path d="M18 15l-6-6-6 6"/></svg>
+    </button>
+
+    <!-- ══════════════════════════════════════
+         SCRIPTS (CDN + Local)
+    ══════════════════════════════════════ -->
+    <!-- Three.js for particle background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- GSAP + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Typed.js for typewriter effect -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+
+    <!-- Vanilla-Tilt.js for 3D card tilt -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+
+    <!-- Local scripts -->
     <script src="script.js"></script>
-    <script src="drive3d.js"></script>
 </body>
 
 </html>
