@@ -285,14 +285,21 @@ function initTyped() {
         document.body.classList.add('cursor-ready');
     }, { passive: true });
 
-    document.addEventListener('mousedown',  () => ring.classList.add('click'));
-    document.addEventListener('mouseup',    () => ring.classList.remove('click'));
+    document.addEventListener('mousedown', () => {
+        ring.classList.add('click');
+        dot.classList.add('click');
+    });
+    document.addEventListener('mouseup', () => {
+        ring.classList.remove('click');
+        dot.classList.remove('click');
+    });
 
     // Delegated hover state keeps the cursor working for dynamically rendered cards.
     document.addEventListener('pointerover', e => {
         const target = e.target.closest?.(interactives);
         if (!target) return;
         ring.classList.add('hover');
+        dot.classList.add('hover');
         ring.classList.toggle('scene', Boolean(target.closest('.journey-hero')));
         ring.dataset.label = target.closest('.journey-hero') ? 'VIEW' : target.tagName === 'A' ? 'OPEN' : 'SELECT';
     });
@@ -301,13 +308,14 @@ function initTyped() {
         const target = e.target.closest?.(interactives);
         if (!target || target.contains(e.relatedTarget)) return;
         ring.classList.remove('hover', 'scene');
+        dot.classList.remove('hover');
         ring.dataset.label = '';
     });
 
-    // Lag ring slightly behind for smooth feel
+    // Lag ring slightly behind for smooth magnetic feel
     function loop() {
-        rx += (mx - rx) * 0.16;
-        ry += (my - ry) * 0.16;
+        rx += (mx - rx) * 0.13;
+        ry += (my - ry) * 0.13;
 
         dot.style.left  = mx + 'px';
         dot.style.top   = my + 'px';

@@ -455,22 +455,18 @@
 
         <!-- Cinematic 3D render -->
         <div class="drive-scene-wrapper journey-hero" id="drive-scene-wrapper">
-            <div class="journey-media" aria-label="Live road video showing a night drive">
-                <video class="journey-video" autoplay muted loop playsinline preload="metadata" poster="assets/journey-road.png" aria-label="Night highway driving footage">
-                    <source src="https://cdn.coverr.co/videos/coverr-stream-next-to-the-road-4482/1080p.mp4" type="video/mp4">
+            <div class="journey-media" aria-label="Aerial night city timelapse">
+                <video class="journey-video" autoplay muted loop playsinline preload="metadata" aria-label="Stunning night city aerial timelapse">
+                    <source src="https://cdn.coverr.co/videos/coverr-a-bird-eye-view-of-a-city-at-night-5718/1080p.mp4" type="video/mp4">
+                    <source src="https://cdn.coverr.co/videos/coverr-futuristic-city-night-2952/1080p.mp4" type="video/mp4">
                 </video>
-                <img class="journey-fallback" src="assets/journey-road.png" alt="A dark electric sports car on a wet mountain highway at blue hour" loading="lazy">
-            </div>
-            <div class="journey-vehicle" aria-hidden="true">
-                <span class="vehicle-aura"></span>
-                <img id="journey-vehicle-img" src="assets/vehicle-green.png" alt="">
             </div>
             <div class="journey-vignette"></div>
             <div class="journey-grain"></div>
 
             <div class="journey-topbar">
-                <div class="drive-label"><span class="drive-dot"></span>LIVE VEHICLE / ROAD STUDY</div>
-                <span class="journey-location"><span class="location-pulse"></span> Somewhere between logic &amp; launch</span>
+                <div class="drive-label"><span class="drive-dot"></span>LIVE · TECH JOURNEY</div>
+                <span class="journey-location"><span class="location-pulse"></span> Building the future, one commit at a time</span>
                 <button class="journey-video-control" type="button" aria-label="Pause background video" aria-pressed="false"><span class="video-control-icon">Ⅱ</span><span class="video-control-text">Pause motion</span></button>
             </div>
 
@@ -488,6 +484,34 @@
             </div>
 
             <div class="journey-caption"><span class="caption-index">01</span><span>Event Registration System</span><span class="caption-rule"></span><span>Java · OOP · Validation</span></div>
+        </div>
+
+        <!-- Tech Facts Ticker -->
+        <div class="tech-ticker-wrap">
+            <div class="ticker-label"><span>⚡</span> TECH FACTS</div>
+            <div class="tech-ticker">
+                <div class="ticker-track">
+                    <span class="ticker-item"><span class="ticker-dot" style="--td:#6366f1"></span> The first computer bug was a literal moth found in a Harvard relay in 1947</span>
+                    <span class="ticker-item"><span class="ticker-dot" style="--td:#00d4ff"></span> Java runs on 3+ billion devices worldwide</span>
+                    <span class="ticker-item"><span class="ticker-dot" style="--td:#10b981"></span> GitHub hosts over 420 million repositories as of 2024</span>
+                    <span class="ticker-item"><span class="ticker-dot" style="--td:#f59e0b"></span> Python was named after Monty Python, not the snake</span>
+                    <span class="ticker-item"><span class="ticker-dot" style="--td:#e879f9"></span> The average developer writes ~10–12 lines of production code per day</span>
+                    <span class="ticker-item"><span class="ticker-dot" style="--td:#06b6d4"></span> Linux kernel has 27+ million lines of code maintained by 1,700+ developers</span>
+                    <span class="ticker-item"><span class="ticker-dot" style="--td:#f97316"></span> Stack Overflow receives 50+ million unique visitors monthly</span>
+                    <span class="ticker-item"><span class="ticker-dot" style="--td:#22c55e"></span> MongoDB stores data as BSON (Binary JSON) documents for high performance</span>
+                    <span class="ticker-item"><span class="ticker-dot" style="--td:#8b5cf6"></span> React was open-sourced by Facebook in 2013 and now powers millions of sites</span>
+                    <span class="ticker-item"><span class="ticker-dot" style="--td:#00d4ff"></span> The fastest sorting algorithm achieves O(n log n) time complexity</span>
+                    <span class="ticker-item"><span class="ticker-dot" style="--td:#6366f1"></span> AI writes ~30% of Microsoft's codebase in 2024, up from 0% in 2021</span>
+                    <span class="ticker-item"><span class="ticker-dot" style="--td:#10b981"></span> Node.js can handle 1 million+ concurrent connections with async I/O</span>
+                    <!-- Duplicate for seamless loop -->
+                    <span class="ticker-item"><span class="ticker-dot" style="--td:#6366f1"></span> The first computer bug was a literal moth found in a Harvard relay in 1947</span>
+                    <span class="ticker-item"><span class="ticker-dot" style="--td:#00d4ff"></span> Java runs on 3+ billion devices worldwide</span>
+                    <span class="ticker-item"><span class="ticker-dot" style="--td:#10b981"></span> GitHub hosts over 420 million repositories as of 2024</span>
+                    <span class="ticker-item"><span class="ticker-dot" style="--td:#f59e0b"></span> Python was named after Monty Python, not the snake</span>
+                    <span class="ticker-item"><span class="ticker-dot" style="--td:#e879f9"></span> The average developer writes ~10–12 lines of production code per day</span>
+                    <span class="ticker-item"><span class="ticker-dot" style="--td:#06b6d4"></span> Linux kernel has 27+ million lines of code maintained by 1,700+ developers</span>
+                </div>
+            </div>
         </div>
 
         <!-- Project cards grid below canvas -->

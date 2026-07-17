@@ -819,3 +819,93 @@
     .journey-media img { animation: none; }
     .journey-vehicle { animation: none; opacity: 1; transform: translate3d(0,0,0) scale(.74); }
 }
+
+/* ── Tech Facts Ticker ───────────────────────────────────── */
+.tech-ticker-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: rgba(5, 10, 28, 0.95);
+    border-top: 1px solid rgba(99, 102, 241, 0.18);
+    border-bottom: 1px solid rgba(99, 102, 241, 0.18);
+    margin: -60px 0 60px;
+    overflow: hidden;
+    position: relative;
+    z-index: 5;
+}
+
+.ticker-label {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 0 20px;
+    height: 44px;
+    background: linear-gradient(90deg, rgba(99,102,241,0.25), rgba(99,102,241,0.06));
+    border-right: 1px solid rgba(99, 102, 241, 0.25);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #a5b4fc;
+    white-space: nowrap;
+}
+
+.ticker-label span { font-size: 0.85rem; }
+
+.tech-ticker {
+    flex: 1;
+    overflow: hidden;
+    height: 44px;
+    display: flex;
+    align-items: center;
+}
+
+.ticker-track {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    white-space: nowrap;
+    animation: ticker-scroll 55s linear infinite;
+    will-change: transform;
+}
+
+.ticker-track:hover { animation-play-state: paused; }
+
+@keyframes ticker-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+.ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 0 32px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: rgba(203, 213, 225, 0.82);
+    letter-spacing: 0.01em;
+    border-right: 1px solid rgba(255,255,255,0.05);
+    height: 44px;
+    transition: color 0.3s;
+}
+
+.ticker-item:hover { color: #f1f5f9; }
+
+.ticker-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--td, #6366f1);
+    box-shadow: 0 0 8px var(--td, #6366f1);
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .ticker-label { padding: 0 14px; font-size: 0.55rem; }
+    .ticker-item { font-size: 0.72rem; padding: 0 22px; }
+}
+
