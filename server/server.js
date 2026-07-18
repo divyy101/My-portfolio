@@ -373,3 +373,6 @@ app.post('/api/contact', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Portfolio API Proxy Server running on http://localhost:${PORT}`);
 });
+
+export default app;
+

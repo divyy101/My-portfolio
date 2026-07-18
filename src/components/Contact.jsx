@@ -20,9 +20,13 @@ export default function Contact() {
         body: JSON.stringify(formData),
       });
 
-      if (!res.ok) throw new Error('Failed to send message.');
+      const data = await res.json().catch(() => null);
 
-      setStatus({ loading: false, success: true, error: null });
+      if (!res.ok) {
+        throw new Error(data?.error || data?.message || 'Failed to send message. Please try again.');
+      }
+
+      setStatus({ loading: false, success: true, message: data?.message || 'Message delivered! Divyansh will respond soon.', error: null });
       setFormData({ name: '', email: '', message: '' });
     } catch (err) {
       console.error(err);
