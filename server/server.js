@@ -2,8 +2,28 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import rateLimit from 'express-rate-limit';
+import nodemailer from 'nodemailer';
 
 dotenv.config();
+
+// Mail Transporter Helper (Gmail SMTP)
+const createTransporter = () => {
+  const user = process.env.EMAIL_USER || process.env.GMAIL_USER || process.env.SMTP_USER || 'divyanshsingh74178@gmail.com';
+  const pass = process.env.EMAIL_PASS || process.env.GMAIL_PASS || process.env.GMAIL_APP_PASSWORD || process.env.SMTP_PASS || process.env.PASS || '';
+
+  if (!pass) {
+    return null;
+  }
+
+  return nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: user.trim(),
+      pass: pass.trim().replace(/\s+/g, '') // strip spaces from Gmail 16-character App Password
+    },
+  });
+};
+
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -256,14 +276,98 @@ Serving as Vice President of NIITS taught me how to foster innovation, organize 
 // ----------------------------------------------------
 // 4. Contact Form Handler
 // ----------------------------------------------------
-app.post('/api/contact', (req, res) => {
+app.post('/api/contact', async (req, res) => {
   const { name, email, message } = req.body;
   if (!name || !email || !message) {
-    return res.status(400).json({ error: 'All fields are required.' });
+    return res.status(400).json({ error: 'All fields (name, email, message) are required.' });
   }
 
-  console.log(`Received message from ${name} (${email}): ${message}`);
-  res.json({ success: true, message: 'Message received successfully! Divyansh will get back to you soon.' });
+  console.log(`[Contact Form] Received message from ${name} (${email}): ${message}`);
+
+  const receiverEmail = process.env.NOTIFICATION_EMAIL || 'divyanshsingh74178@gmail.com';
+  const senderEmailUser = process.env.EMAIL_USER || 'divyanshsingh74178@gmail.com';
+
+  const transporter = createTransporter();
+
+  // 1. Notification Email to Divyansh
+  const ownerMailOptions = {
+    from: `"Portfolio Contact Form" <${senderEmailUser}>`,
+    to: receiverEmail,
+    replyTo: email,
+    subject: `📬 New Portfolio Message from ${name}`,
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; padding: 20px; border: 1px solid #e0e0e0; border-radius: 10px; background-color: #ffffff;">
+        <h2 style="color: #2563eb; margin-top: 0;">New Portfolio Message Received</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> <a href="mailto:${email}" style="color: #2563eb;">${email}</a></p>
+        <p><strong>Date:</strong> ${new Date().toLocaleString()}</p>
+        <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 20px 0;" />
+        <p><strong>Message:</strong></p>
+        <blockquote style="background: #f8fafc; padding: 15px; border-left: 4px solid #2563eb; margin: 0; color: #1e293b; font-size: 1rem;">
+          ${message.replace(/\n/g, '<br/>')}
+        </blockquote>
+      </div>
+    `,
+  };
+
+  // 2. Auto-Reply Email to the Sender ("Thanks for contacting me")
+  const autoReplyMailOptions = {
+    from: `"Divyansh Singh" <${senderEmailUser}>`,
+    to: email,
+    subject: `Thanks for contacting me! - Divyansh Singh`,
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; padding: 20px; border: 1px solid #e0e0e0; border-radius: 10px; background-color: #ffffff;">
+        <h2 style="color: #10b981; margin-top: 0;">Thanks for reaching out, ${name}!</h2>
+        <p style="color: #334155; font-size: 1rem;">Hello ${name},</p>
+        <p style="color: #334155; font-size: 1rem; line-height: 1.5;">
+          Thank you for contacting me through my portfolio. I have received your message and will review it and get back to you shortly.
+        </p>
+        <br/>
+        <div style="background-color: #f1f5f9; padding: 15px; border-radius: 8px;">
+          <p style="margin: 0 0 8px 0; font-size: 0.85rem; color: #64748b; font-weight: bold;">A copy of your message:</p>
+          <p style="margin: 0; color: #334155; font-style: italic;">"${message.replace(/\n/g, '<br/>')}"</p>
+        </div>
+        <br/>
+        <p style="color: #334155; font-size: 1rem; margin-bottom: 4px;">Best regards,</p>
+        <p style="color: #1e293b; font-size: 1rem; margin-top: 0;">
+          <strong>Divyansh Singh</strong><br/>
+          <span style="color: #64748b; font-size: 0.9rem;">Software Engineer & Full Stack Developer</span><br/>
+          <a href="mailto:divyanshsingh74178@gmail.com" style="color: #2563eb; text-decoration: none;">divyanshsingh74178@gmail.com</a> | +91 9555807076<br/>
+          <a href="https://github.com/divyy101" style="color: #2563eb; text-decoration: none;">github.com/divyy101</a>
+        </p>
+      </div>
+    `,
+  };
+
+  if (!transporter) {
+    console.log('[Mail Service] EMAIL_PASS not configured in .env. Simulated email payload:');
+    console.log('-> To Owner:', ownerMailOptions.to, ownerMailOptions.subject);
+    console.log('-> Auto-reply To Sender:', autoReplyMailOptions.to, autoReplyMailOptions.subject);
+    return res.json({
+      success: true,
+      delivered: false,
+      message: 'Message received! (Auto-reply & notification generated. Set EMAIL_PASS in your .env for real SMTP delivery).'
+    });
+  }
+
+  try {
+    await Promise.all([
+      transporter.sendMail(ownerMailOptions),
+      transporter.sendMail(autoReplyMailOptions)
+    ]);
+
+    console.log(`[Mail Service] Emails successfully sent to owner (${receiverEmail}) and sender (${email})`);
+    return res.json({
+      success: true,
+      delivered: true,
+      message: 'Message delivered! Divyansh has been notified and a confirmation email was sent to your inbox.'
+    });
+  } catch (err) {
+    console.error('[Mail Service Error]:', err.message);
+    return res.status(500).json({
+      error: 'Failed to deliver email. Please try again or contact directly at divyanshsingh74178@gmail.com'
+    });
+  }
 });
 
 app.listen(PORT, () => {
