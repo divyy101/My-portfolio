@@ -12,14 +12,12 @@ export default function About() {
     {
       institution: 'St. Fidelis College, Lucknow',
       degree: 'Intermediate (ISC)',
-      year: '2023',
-      score: 'Percentage: 81.5%'
+      year: '2023'
     },
     {
       institution: 'St. Fidelis College, Lucknow',
       degree: 'High School (ICSE)',
-      year: '2021',
-      score: 'Percentage: 85.8%'
+      year: '2021'
     }
   ];
 
@@ -109,20 +107,22 @@ export default function About() {
                   <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '0.5rem' }}>
                     {edu.institution}
                   </p>
-                  <span 
-                    style={{
-                      display: 'inline-block',
-                      padding: '0.2rem 0.6rem',
-                      borderRadius: '6px',
-                      backgroundColor: 'var(--bg-secondary)',
-                      border: '1px solid var(--border-color)',
-                      fontSize: '0.8rem',
-                      color: 'var(--text-primary)',
-                      fontWeight: 500,
-                    }}
-                  >
-                    {edu.score}
-                  </span>
+                  {edu.score && (
+                    <span 
+                      style={{
+                        display: 'inline-block',
+                        padding: '0.2rem 0.6rem',
+                        borderRadius: '6px',
+                        backgroundColor: 'var(--bg-secondary)',
+                        border: '1px solid var(--border-color)',
+                        fontSize: '0.8rem',
+                        color: 'var(--text-primary)',
+                        fontWeight: 500,
+                      }}
+                    >
+                      {edu.score}
+                    </span>
+                  )}
                 </div>
               ))}
             </div>
