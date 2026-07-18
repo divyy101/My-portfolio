@@ -465,6 +465,67 @@
     }
 }
 
+/* ── Project motion study: minimal product-design microinteraction ── */
+.project-motion-lab {
+    min-height: 142px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    margin: 0 0 28px;
+    padding: 18px 26px;
+    overflow: hidden;
+    isolation: isolate;
+    border: 1px solid rgba(175, 190, 255, .12);
+    border-radius: 20px;
+    background: linear-gradient(108deg, rgba(16, 25, 61, .82), rgba(8, 15, 38, .52));
+}
+
+.motion-lab-copy { position: relative; z-index: 2; }
+.motion-lab-eyebrow {
+    display: flex; align-items: center; gap: 8px;
+    color: #a5b4fc; font: 600 .65rem/1 'JetBrains Mono', monospace;
+    letter-spacing: .16em; text-transform: uppercase;
+}
+.motion-lab-eyebrow span { width: 7px; height: 7px; border-radius: 50%; background: #fb7185; box-shadow: 0 0 14px #fb7185; }
+.motion-lab-copy p { margin: 10px 0 0; color: #e7eaf8; font: 600 clamp(1.05rem, 2vw, 1.35rem)/1.2 'Space Grotesk', sans-serif; letter-spacing: -.03em; }
+
+.motion-lab-stage { position: relative; width: 330px; height: 104px; flex: 0 0 auto; }
+.motion-grid { position: absolute; inset: 0; opacity: .38; background-image: linear-gradient(rgba(160,174,255,.13) 1px, transparent 1px), linear-gradient(90deg, rgba(160,174,255,.13) 1px, transparent 1px); background-size: 20px 20px; mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent); }
+.motion-orb { position: absolute; border-radius: 50%; filter: blur(.2px); animation: motion-float 5s ease-in-out infinite; }
+.motion-orb-pink { width: 47px; height: 47px; top: 5px; right: 29px; background: linear-gradient(135deg, #ff7eb3, #d946ef); box-shadow: 0 12px 30px rgba(217,70,239,.3); }
+.motion-orb-orange { width: 25px; height: 25px; right: 4px; bottom: 2px; background: #ffb86b; animation-delay: -2.2s; }
+.motion-path { position: absolute; height: 2px; width: 116px; top: 62px; left: 70px; transform: rotate(-16deg); transform-origin: left; background: linear-gradient(90deg, #818cf8, #f472b6, transparent); opacity: .72; }
+.motion-window { position: absolute; border: 1px solid rgba(255,255,255,.22); background: rgba(12, 19, 49, .8); box-shadow: 0 18px 38px rgba(0,0,0,.23); backdrop-filter: blur(9px); }
+.motion-window-back { width: 130px; height: 75px; top: 14px; left: 40px; padding: 13px; border-radius: 12px; transform: rotate(-7deg); animation: motion-card-back 5s ease-in-out infinite; }
+.motion-window-bar, .motion-window-line { display: block; height: 5px; border-radius: 8px; margin-bottom: 9px; background: rgba(199,210,254,.18); }
+.motion-window-bar { width: 35%; background: #a5b4fc; }.motion-window-line.short { width: 60%; }
+.motion-window-front { width: 158px; height: 96px; right: 55px; top: 5px; border-radius: 14px; padding: 12px; transform: rotate(5deg); animation: motion-card-front 5s ease-in-out infinite; }
+.motion-window-head { display: flex; align-items: center; gap: 4px; }.motion-window-head span { width: 38px; height: 6px; margin-right: auto; border-radius: 8px; background: #f9a8d4; }.motion-window-head i { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,.3); }
+.motion-window-title { display: block; width: 55%; height: 7px; margin: 15px 0 10px; border-radius: 8px; background: rgba(255,255,255,.72); }
+.motion-window-chart { display: flex; align-items: end; gap: 5px; height: 32px; }.motion-window-chart b { width: 12px; border-radius: 5px 5px 2px 2px; background: linear-gradient(#f472b6, #818cf8); animation: motion-bars 1.9s ease-in-out infinite alternate; }.motion-window-chart b:nth-child(1) { height: 38%; }.motion-window-chart b:nth-child(2) { height: 69%; animation-delay: -.6s; }.motion-window-chart b:nth-child(3) { height: 50%; animation-delay: -.2s; }.motion-window-chart b:nth-child(4) { height: 88%; animation-delay: -.8s; }.motion-window-chart b:nth-child(5) { height: 58%; animation-delay: -.4s; }.motion-window-chart b:nth-child(6) { height: 76%; animation-delay: -1s; }
+.motion-cursor { position: absolute; z-index: 2; left: 164px; bottom: 0; display: grid; place-items: center; width: 23px; height: 23px; border-radius: 7px; color: #111827; font: 700 16px/1 sans-serif; background: #f8fafc; box-shadow: 0 5px 15px rgba(0,0,0,.28); animation: motion-cursor 5s cubic-bezier(.45,0,.35,1) infinite; }
+@media (prefers-reduced-motion: no-preference) {
+    .project-motion-lab:not(.is-visible) .motion-orb,
+    .project-motion-lab:not(.is-visible) .motion-window,
+    .project-motion-lab:not(.is-visible) .motion-window-chart b,
+    .project-motion-lab:not(.is-visible) .motion-cursor { animation-play-state: paused; }
+}
+@keyframes motion-float { 50% { transform: translate(-7px, 8px) scale(1.06); } }
+@keyframes motion-card-back { 50% { transform: translate(-4px, 5px) rotate(-4deg); } }
+@keyframes motion-card-front { 50% { transform: translate(8px, -3px) rotate(2deg); } }
+@keyframes motion-bars { to { transform: scaleY(.55); transform-origin: bottom; } }
+@keyframes motion-cursor { 0%, 15% { transform: translate(0, 0) scale(1); } 42% { transform: translate(66px, -35px) scale(.9); } 50% { transform: translate(66px, -35px) scale(1.12); } 72%, 100% { transform: translate(0, 0) scale(1); } }
+
+@media (max-width: 620px) {
+    .project-motion-lab { min-height: 210px; align-items: flex-start; flex-direction: column; gap: 10px; padding: 21px; }
+    .motion-lab-stage { align-self: flex-end; transform: scale(.9); transform-origin: right bottom; margin-top: -10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .motion-orb, .motion-window, .motion-window-chart b, .motion-cursor { animation: none; }
+}
+
 /* ============================================================
    2026 JOURNEY HERO — rendered 3D visual treatment
    ============================================================ */
@@ -908,4 +969,3 @@
     .ticker-label { padding: 0 14px; font-size: 0.55rem; }
     .ticker-item { font-size: 0.72rem; padding: 0 22px; }
 }
-

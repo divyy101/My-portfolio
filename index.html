@@ -80,6 +80,13 @@
         <!-- Three.js particle canvas -->
         <canvas id="hero-canvas" class="hero-canvas"></canvas>
 
+        <!-- Cinematic waterfall/scenery background video -->
+        <video class="hero-bg-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+            <source src="https://videos.pexels.com/video-files/1448735/1448735-hd_1280_720_25fps.mp4" type="video/mp4">
+            <source src="https://videos.pexels.com/video-files/1448736/1448736-hd_1280_720_25fps.mp4" type="video/mp4">
+        </video>
+        <div class="hero-video-scrim" aria-hidden="true"></div>
+
         <!-- Animated gradient orbs (CSS) -->
         <div class="hero-bg">
             <div class="orb orb-1"></div>
@@ -123,7 +130,7 @@
                     </div>
                     <div class="stat-chip">
                         <span class="stat-icon">🚀</span>
-                        <span>4+ Projects</span>
+                        <span>6+ Projects</span>
                     </div>
                 </div>
 
@@ -139,20 +146,13 @@
                 </div>
             </div>
 
-            <!-- Right: Profile image -->
+            <!-- Right: Profile Photo -->
             <div class="hero-visual" id="hero-visual">
                 <div class="profile-ring-wrap">
                     <div class="profile-ring-outer"></div>
                     <div class="profile-ring-inner"></div>
                     <div class="profile-img-wrap">
-                        <video
-                            class="profile-img profile-video"
-                            autoplay muted loop playsinline
-                            aria-label="Japanese waterfall nature scene"
-                        >
-                            <source src="https://cdn.coverr.co/videos/coverr-japanese-style-waterfall-flowing-into-a-beautiful-pond-2066/1080p.mp4" type="video/mp4">
-                            <source src="https://cdn.coverr.co/videos/coverr-waterfall-in-forest-6220/1080p.mp4" type="video/mp4">
-                        </video>
+                        <img class="profile-img" src="profile.jpg" alt="Divyansh Singh">
                         <div class="profile-glow"></div>
                     </div>
                     <!-- Floating orbit tags -->
@@ -460,37 +460,48 @@
             </div>
         </div>
 
-        <!-- Cinematic 3D render -->
-        <div class="drive-scene-wrapper journey-hero" id="drive-scene-wrapper">
-            <div class="journey-media" aria-label="Aerial night city timelapse">
-                <video class="journey-video" autoplay muted loop playsinline preload="metadata" aria-label="Stunning night city aerial timelapse">
-                    <source src="https://cdn.coverr.co/videos/coverr-a-bird-eye-view-of-a-city-at-night-5718/1080p.mp4" type="video/mp4">
-                    <source src="https://cdn.coverr.co/videos/coverr-futuristic-city-night-2952/1080p.mp4" type="video/mp4">
+        <!-- ✿ Japanese Cherry Blossom Cinematic Panel -->
+        <div class="sakura-panel" id="sakura-panel">
+            <!-- Looping sakura video -->
+            <div class="sakura-media">
+                <video class="sakura-video" autoplay muted loop playsinline preload="metadata" aria-label="Japanese cherry blossom sakura video">
+                    <source src="https://videos.pexels.com/video-files/3571264/3571264-hd_1280_720_30fps.mp4" type="video/mp4">
+                    <source src="https://videos.pexels.com/video-files/8047448/8047448-hd_1280_720_25fps.mp4" type="video/mp4">
                 </video>
             </div>
-            <div class="journey-vignette"></div>
-            <div class="journey-grain"></div>
+            <!-- Multi-layer vignette for depth -->
+            <div class="sakura-vignette"></div>
+            <!-- Grain for cinematic texture -->
+            <div class="sakura-grain"></div>
 
-            <div class="journey-topbar">
-                <div class="drive-label"><span class="drive-dot"></span>LIVE · TECH JOURNEY</div>
-                <span class="journey-location"><span class="location-pulse"></span> Building the future, one commit at a time</span>
-                <button class="journey-video-control" type="button" aria-label="Pause background video" aria-pressed="false"><span class="video-control-icon">Ⅱ</span><span class="video-control-text">Pause motion</span></button>
+            <!-- Pause / play control -->
+            <button class="sakura-pause-btn" id="sakura-pause-btn" aria-label="Pause sakura video" aria-pressed="false">
+                <span class="sakura-pause-icon">Ⅱ</span>
+                <span class="sakura-pause-label">Pause</span>
+            </button>
+
+            <!-- Centred copy -->
+            <div class="sakura-copy">
+                <span class="sakura-eyebrow">
+                    <span class="sakura-eyebrow-dot"></span>
+                    Cherry Blossom · 桜
+                </span>
+                <h3 class="sakura-heading">Built with beauty.<br><em>Shipped with purpose.</em></h3>
+                <p class="sakura-sub">Every project starts from a seed of curiosity — nurtured through iteration, and bloomed into real software.</p>
+                <a class="sakura-cta" href="#pcard-1">
+                    <span>Explore my work</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
             </div>
 
-            <div class="journey-copy">
-                <span class="journey-kicker">Currently exploring <span class="journey-kicker-dot"></span> 06 projects</span>
-                <h3>From rough idea<br><em>to real software.</em></h3>
-                <p>Follow the path from first sketch to shipped experience — one thoughtful decision at a time.</p>
-                <a class="journey-action" href="#pcard-1">Explore the work <span>↗</span></a>
+            <!-- Stats bar -->
+            <div class="sakura-stats">
+                <div class="sakura-stat"><span class="sakura-stat-num">06</span><span class="sakura-stat-lbl">Projects</span></div>
+                <div class="sakura-stat-sep"></div>
+                <div class="sakura-stat"><span class="sakura-stat-num">3+</span><span class="sakura-stat-lbl">Tech Stacks</span></div>
+                <div class="sakura-stat-sep"></div>
+                <div class="sakura-stat"><span class="sakura-stat-num">∞</span><span class="sakura-stat-lbl">Lines of Logic</span></div>
             </div>
-
-            <div class="journey-console" aria-label="Journey progress">
-                <div class="console-head"><span>BUILD LOG</span><span>06 / 06</span></div>
-                <div class="console-line"><span class="console-fill"></span></div>
-                <div class="console-steps"><span>DISCOVER</span><span>DESIGN</span><span>BUILD</span><span class="active">SHIP</span></div>
-            </div>
-
-            <div class="journey-caption"><span class="caption-index">01</span><span>Event Registration System</span><span class="caption-rule"></span><span>Java · OOP · Validation</span></div>
         </div>
 
         <!-- Tech Facts Ticker -->
@@ -523,6 +534,27 @@
 
         <!-- Project cards grid below canvas -->
         <div class="container">
+            <div class="project-motion-lab" data-project-motion aria-label="Animated product design preview">
+                <div class="motion-lab-copy">
+                    <span class="motion-lab-eyebrow"><span></span> interface studies</span>
+                    <p>Small details, intentionally in motion.</p>
+                </div>
+                <div class="motion-lab-stage" aria-hidden="true">
+                    <span class="motion-grid"></span>
+                    <span class="motion-orb motion-orb-pink"></span>
+                    <span class="motion-orb motion-orb-orange"></span>
+                    <span class="motion-path"></span>
+                    <div class="motion-window motion-window-back">
+                        <span class="motion-window-bar"></span><span class="motion-window-line short"></span><span class="motion-window-line"></span>
+                    </div>
+                    <div class="motion-window motion-window-front">
+                        <div class="motion-window-head"><span></span><i></i><i></i></div>
+                        <span class="motion-window-title"></span>
+                        <div class="motion-window-chart"><b></b><b></b><b></b><b></b><b></b><b></b></div>
+                    </div>
+                    <span class="motion-cursor">↗</span>
+                </div>
+            </div>
             <div class="project-cards-grid">
 
                 <div class="pcard" id="pcard-1" data-tilt>
@@ -652,7 +684,7 @@
                             <svg class="social-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                         </a>
 
-                        <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener" class="social-btn" id="linkedin-btn">
+                        <a href="https://linkedin.com/in/divyansh-singh-9b61b1286" target="_blank" rel="noopener" class="social-btn" id="linkedin-btn">
                             <div class="social-icon-wrap" style="--s-color: #0a66c2">
                                 <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
                             </div>
@@ -737,6 +769,26 @@
 
     <!-- Local scripts -->
     <script src="script.js"></script>
+    <!-- Sakura panel: pause/play control -->
+    <script>
+    (function() {
+        const btn   = document.getElementById('sakura-pause-btn');
+        const video = document.querySelector('.sakura-video');
+        if (!btn || !video) return;
+        const icon  = btn.querySelector('.sakura-pause-icon');
+        const label = btn.querySelector('.sakura-pause-label');
+        btn.addEventListener('click', () => {
+            if (video.paused) {
+                video.play().then(() => { icon.textContent = 'Ⅱ'; label.textContent = 'Pause'; btn.setAttribute('aria-pressed','false'); });
+            } else {
+                video.pause();
+                icon.textContent = '▶';
+                label.textContent = 'Play';
+                btn.setAttribute('aria-pressed','true');
+            }
+        });
+    })();
+    </script>
 </body>
 
 </html>

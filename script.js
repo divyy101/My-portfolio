@@ -548,6 +548,23 @@ function animateCounters() {
     });
 })();
 
+// ── 12b. Project design-motion preview ─────────────────────
+(function initProjectMotionPreview() {
+    const preview = document.querySelector('[data-project-motion]');
+    if (!preview || !('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                preview.classList.add('is-visible');
+                observer.unobserve(preview);
+            }
+        });
+    }, { threshold: 0.25 });
+
+    observer.observe(preview);
+})();
+
 // ── 13. SCROLL TO TOP ───────────────────────────────────────
 (function initScrollTop() {
     const btn = document.getElementById('scroll-top-btn');

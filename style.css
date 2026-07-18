@@ -12,38 +12,40 @@
 
 /* ── 1. Design Tokens ────────────────────────────────────── */
 :root {
-    /* Core Palette */
-    --bg-void:        #020615;
-    --bg-deep:        #060d1f;
-    --bg-dark:        #0a1228;
-    --bg-mid:         #0f1c38;
-    --bg-card:        rgba(10, 20, 50, 0.55);
-    --bg-card-hover:  rgba(15, 28, 65, 0.8);
+    /* Core Palette — new premium dark theme */
+    --bg-void:        #0A0A0A;   /* Midnight Background */
+    --bg-deep:        #0B132B;   /* Rich Navy Sections */
+    --bg-dark:        #0d1a35;
+    --bg-mid:         #112040;
+    --bg-card:        rgba(24, 24, 27, 0.75);   /* Dark Slate */
+    --bg-card-hover:  rgba(30, 30, 35, 0.92);
 
-    /* Neon Accents */
-    --neon-cyan:      #00d4ff;
-    --neon-purple:    #7c3aed;
-    --neon-pink:      #e879f9;
-    --neon-green:     #00ff88;
+    /* Accents */
+    --neon-cyan:      #22D3EE;   /* Primary Accent */
+    --neon-pink:      #EC4899;   /* Secondary Accent */
+    --neon-gold:      #FFD700;   /* Premium Highlight */
+    --neon-purple:    #8b5cf6;   /* Supporting purple */
+    --neon-green:     #34d399;
     --neon-blue:      #3b82f6;
     --neon-orange:    #f97316;
 
     /* Gradients */
-    --grad-primary:   linear-gradient(135deg, #7c3aed 0%, #00d4ff 100%);
-    --grad-hero:      linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #00d4ff 100%);
-    --grad-accent:    linear-gradient(135deg, #e879f9 0%, #7c3aed 100%);
-    --grad-green:     linear-gradient(135deg, #00ff88 0%, #00d4ff 100%);
-    --grad-warm:      linear-gradient(135deg, #f97316 0%, #e879f9 100%);
+    --grad-primary:   linear-gradient(135deg, #EC4899 0%, #22D3EE 100%);
+    --grad-hero:      linear-gradient(135deg, #EC4899 0%, #8b5cf6 50%, #22D3EE 100%);
+    --grad-accent:    linear-gradient(135deg, #EC4899 0%, #8b5cf6 100%);
+    --grad-green:     linear-gradient(135deg, #34d399 0%, #22D3EE 100%);
+    --grad-warm:      linear-gradient(135deg, #FFD700 0%, #EC4899 100%);
+    --grad-gold:      linear-gradient(135deg, #FFD700 0%, #f97316 100%);
 
     /* Glass */
-    --glass-bg:       rgba(10, 20, 50, 0.4);
+    --glass-bg:       rgba(24, 24, 27, 0.45);
     --glass-border:   rgba(255, 255, 255, 0.07);
-    --glass-border-h: rgba(0, 212, 255, 0.25);
+    --glass-border-h: rgba(34, 211, 238, 0.30);
     --glass-blur:     20px;
-    --glass-shadow:   0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255,255,255,0.04);
+    --glass-shadow:   0 8px 32px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255,255,255,0.04);
 
     /* Text */
-    --text-primary:   #f0f4ff;
+    --text-primary:   #F8FAFC;   /* Off White */
     --text-secondary: #cbd5e1;
     --text-muted:     #8892b0;
     --text-dim:       #4a5568;
@@ -63,10 +65,11 @@
     --ease-smooth:    cubic-bezier(0.4, 0, 0.2, 1);
     --transition:     all 0.4s var(--ease-smooth);
 
-    /* Shadows */
-    --glow-cyan:      0 0 20px rgba(0, 212, 255, 0.35), 0 0 60px rgba(0, 212, 255, 0.15);
-    --glow-purple:    0 0 20px rgba(124, 58, 237, 0.4), 0 0 60px rgba(124, 58, 237, 0.2);
-    --glow-pink:      0 0 20px rgba(232, 121, 249, 0.4), 0 0 60px rgba(232, 121, 249, 0.2);
+    /* Glows — updated to new accent colours */
+    --glow-cyan:      0 0 20px rgba(34, 211, 238, 0.40), 0 0 60px rgba(34, 211, 238, 0.18);
+    --glow-pink:      0 0 20px rgba(236, 72, 153, 0.45), 0 0 60px rgba(236, 72, 153, 0.22);
+    --glow-gold:      0 0 20px rgba(255, 215, 0,  0.45), 0 0 60px rgba(255, 215, 0,  0.20);
+    --glow-purple:    0 0 20px rgba(139, 92, 246, 0.40), 0 0 60px rgba(139, 92, 246, 0.20);
 }
 
 html {
@@ -468,6 +471,31 @@ button { border: none; background: none; cursor: pointer; }
     opacity: 0.7;
 }
 
+/* Cinematic scenery/waterfall hero background video */
+.hero-bg-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+    opacity: 0.38;
+    filter: saturate(1.5) brightness(0.72) contrast(1.05);
+    pointer-events: none;
+}
+
+/* Dark scrim — preserves text legibility over the video */
+.hero-video-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+        linear-gradient(180deg, rgba(10,10,10,0.60) 0%, rgba(10,10,10,0.20) 45%, rgba(10,10,10,0.75) 100%),
+        linear-gradient(90deg, rgba(11,19,43,0.55) 0%, transparent 60%);
+    pointer-events: none;
+}
+
 /* CSS Orbs */
 .hero-bg {
     position: absolute;
@@ -487,7 +515,7 @@ button { border: none; background: none; cursor: pointer; }
 .orb-1 {
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(124, 58, 237, 0.5), transparent 70%);
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.45), transparent 70%);
     top: -200px;
     left: -200px;
     animation-delay: 0s;
@@ -497,7 +525,7 @@ button { border: none; background: none; cursor: pointer; }
 .orb-2 {
     width: 500px;
     height: 500px;
-    background: radial-gradient(circle, rgba(0, 212, 255, 0.4), transparent 70%);
+    background: radial-gradient(circle, rgba(34, 211, 238, 0.38), transparent 70%);
     bottom: -150px;
     right: -100px;
     animation-delay: 8s;
@@ -507,11 +535,11 @@ button { border: none; background: none; cursor: pointer; }
 .orb-3 {
     width: 400px;
     height: 400px;
-    background: radial-gradient(circle, rgba(232, 121, 249, 0.3), transparent 70%);
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.22), transparent 70%);
     top: 40%;
     left: 50%;
     animation-delay: 16s;
-    opacity: 0.35;
+    opacity: 0.3;
 }
 
 @keyframes orb-float {
@@ -2132,4 +2160,257 @@ button { border: none; background: none; cursor: pointer; }
 /* Cursor: override block removed — single definition above handles everything */
 @media (prefers-reduced-motion: reduce) {
     .cursor-ring::before { animation: none; }
+}
+
+
+/* ══════════════════════════════════════════
+   ✿ SAKURA PANEL — Japanese Cherry Blossom
+══════════════════════════════════════════ */
+.sakura-panel {
+    position: relative;
+    width: min(1360px, calc(100% - 48px));
+    margin: 0 auto 76px;
+    height: min(72vh, 720px);
+    min-height: 560px;
+    border-radius: 28px;
+    overflow: hidden;
+    isolation: isolate;
+    box-shadow:
+        0 36px 90px rgba(0,0,0,.55),
+        0 0 0 1px rgba(236,72,153,.14),
+        0 0 80px rgba(236,72,153,.06);
+}
+
+/* Video fill */
+.sakura-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.sakura-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transform: scale(1.06);
+    animation: sakura-drift 20s ease-in-out infinite alternate;
+    filter: saturate(1.2) brightness(0.82) contrast(1.04);
+}
+
+@keyframes sakura-drift {
+    from { transform: scale(1.06) translate3d(-.5%, 0, 0); }
+    to   { transform: scale(1.12) translate3d(.7%, -1%, 0); }
+}
+
+/* Vignette — pink-on-dark, left-leaning so copy is readable */
+.sakura-vignette {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+        linear-gradient(90deg, rgba(10,10,10,.90) 0%, rgba(10,10,10,.55) 38%, rgba(10,10,10,.08) 78%),
+        linear-gradient(180deg, rgba(10,10,10,.35) 0%, transparent 32%, rgba(10,10,10,.60) 100%),
+        radial-gradient(ellipse 60% 70% at 80% 60%, rgba(236,72,153,.12), transparent 65%);
+    pointer-events: none;
+}
+
+/* Film grain */
+.sakura-grain {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    opacity: .10;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+    mix-blend-mode: soft-light;
+}
+
+/* Pause button — top-right */
+.sakura-pause-btn {
+    position: absolute;
+    top: 22px;
+    right: 24px;
+    z-index: 10;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 14px;
+    border: 1px solid rgba(236,72,153,.35);
+    border-radius: 999px;
+    background: rgba(10,10,10,.52);
+    color: rgba(248,250,252,.85);
+    font: 700 .64rem/1 var(--font-mono);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: background .25s, border-color .25s, transform .2s;
+}
+.sakura-pause-btn:hover {
+    border-color: rgba(236,72,153,.7);
+    background: rgba(236,72,153,.18);
+    transform: translateY(-2px);
+}
+.sakura-pause-icon { color: #EC4899; font-size: .88rem; }
+
+/* Centred copy */
+.sakura-copy {
+    position: absolute;
+    z-index: 5;
+    left: clamp(28px, 7vw, 108px);
+    top: 50%;
+    width: min(530px, 48%);
+    transform: translateY(-44%);
+}
+
+/* Eyebrow */
+.sakura-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    color: #EC4899;
+    font: 700 .68rem var(--font-mono);
+    letter-spacing: .18em;
+    text-transform: uppercase;
+}
+.sakura-eyebrow::before {
+    content: '';
+    width: 26px;
+    height: 1px;
+    background: currentColor;
+    box-shadow: 0 0 10px currentColor;
+}
+.sakura-eyebrow-dot {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #EC4899;
+    box-shadow: 0 0 10px #EC4899;
+    animation: dot-blink 2s ease-in-out infinite;
+}
+
+/* Heading */
+.sakura-heading {
+    font: 600 clamp(2.2rem, 4.8vw, 4.8rem)/.96 var(--font-heading);
+    color: #F8FAFC;
+    letter-spacing: -.05em;
+    margin-bottom: 20px;
+}
+.sakura-heading em {
+    font-style: normal;
+    background: linear-gradient(110deg, #EC4899, #FFD700 48%, #22D3EE);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Sub-text */
+.sakura-sub {
+    max-width: 400px;
+    margin-bottom: 28px;
+    color: rgba(248,250,252,.70);
+    font-size: .97rem;
+    line-height: 1.75;
+}
+
+/* CTA */
+.sakura-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 26px;
+    background: linear-gradient(135deg, #EC4899, #8b5cf6);
+    border-radius: 12px;
+    color: #fff;
+    font: 700 .88rem var(--font-body);
+    letter-spacing: .04em;
+    transition: transform .28s var(--ease-spring), box-shadow .28s;
+    box-shadow: 0 6px 28px rgba(236,72,153,.38);
+}
+.sakura-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 36px rgba(236,72,153,.52), 0 0 0 1px rgba(236,72,153,.3);
+}
+.sakura-cta svg { transition: transform .25s; }
+.sakura-cta:hover svg { transform: translateX(4px); }
+
+/* Bottom stats bar */
+.sakura-stats {
+    position: absolute;
+    z-index: 5;
+    bottom: 28px;
+    right: clamp(28px, 6vw, 90px);
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: rgba(10,10,10,.55);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 16px;
+    padding: 16px 24px;
+    backdrop-filter: blur(16px);
+    box-shadow: 0 8px 32px rgba(0,0,0,.4);
+}
+.sakura-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+}
+.sakura-stat-num {
+    font: 700 1.7rem/1 var(--font-heading);
+    background: linear-gradient(135deg, #EC4899, #FFD700);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -.03em;
+}
+.sakura-stat-lbl {
+    font: 600 .62rem var(--font-mono);
+    color: rgba(248,250,252,.5);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    margin-top: 5px;
+}
+.sakura-stat-sep {
+    width: 1px;
+    height: 36px;
+    background: rgba(255,255,255,.1);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .sakura-copy {
+        left: 28px;
+        width: min(420px, 80%);
+        transform: translateY(-42%);
+    }
+    .sakura-stats { right: 24px; }
+    .sakura-panel { min-height: 480px; }
+}
+
+@media (max-width: 600px) {
+    .sakura-panel {
+        width: calc(100% - 32px);
+        margin-bottom: 48px;
+        border-radius: 20px;
+        min-height: 520px;
+    }
+    .sakura-copy { top: 44%; width: 85%; transform: translateY(-46%); }
+    .sakura-heading { font-size: clamp(1.8rem, 7vw, 2.6rem); }
+    .sakura-stats {
+        left: 16px; right: 16px;
+        bottom: 18px;
+        justify-content: center;
+        padding: 12px 16px;
+    }
+    .sakura-stat { padding: 0 14px; }
+    .sakura-pause-btn { top: 14px; right: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sakura-video { animation: none; }
 }
